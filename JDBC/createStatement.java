@@ -1,6 +1,6 @@
  import java.sql.*; 
  
-public class DBConnectionDemo { 
+public class createStatement { 
     public static void main(String[] args) { 
         String driver = "com.mysql.jdbc.Driver"; 
         String url = "jdbc:mysql://localhost:3306/curlplurk"; 
@@ -11,13 +11,14 @@ public class DBConnectionDemo {
             Connection conn = DriverManager.getConnection(url,user, password);  //2
  
             if(conn != null && !conn.isClosed()) {
-                System.out.println("¸ê®Æ®w³s½u´ú¸Õ¦¨¥\¡I"); 
+                System.out.println("è³‡æ–™åº«é€£ç·šæ¸¬è©¦æˆåŠŸï¼"); 
                 
-                Statement st = conn.createStatement();    //3.³Ğ«Ø¥Î©ó°õ¦æÀRºAsql»y¥yªºStatement¹ï¶H¡AstÄİ§½³¡ÅÜ¶q  
-                ResultSet rs = st.executeQuery("select * from user");    //4.°õ¦æsql¬d¸ß»y¥y¡Aªğ¦^¬d¸ß¼Æ¾Úªºµ²ªG¶°  
-                System.out.println("³Ì«áªº¬d¸ßµ²ªG¬°¡G");  
+                Statement st = conn.createStatement();    //3.å‰µå»ºç”¨æ–¼åŸ·è¡Œéœæ…‹sqlèªå¥çš„Statementå°è±¡ï¼Œstå±¬å±€éƒ¨è®Šé‡  
+				st.execute("INSERT INTO student VALUES('2', 'è‰¯è‘›æ ¼', '2004-5-26','0974121345')"); //é€™è¡Œå°±å¯ä»¥insertäº†
+                ResultSet rs = st.executeQuery("select * from user");    //4.åŸ·è¡ŒsqlæŸ¥è©¢èªå¥ï¼Œè¿”å›æŸ¥è©¢æ•¸æ“šçš„çµæœé›†  
+                System.out.println("æœ€å¾Œçš„æŸ¥è©¢çµæœç‚ºï¼š");  
 				
-                while (rs.next()) { // §PÂ_¬O§_ÁÙ¦³¤U¤@­Ó¼Æ¾Ú  
+                while (rs.next()) { // åˆ¤æ–·æ˜¯å¦é‚„æœ‰ä¸‹ä¸€å€‹æ•¸æ“š  
                     String user1 = rs.getString("user");    
                     String done = rs.getString("done");  
 
@@ -28,7 +29,7 @@ public class DBConnectionDemo {
             
         } 
         catch(ClassNotFoundException e) { 
-            System.out.println("§ä¤£¨ìÅX°Êµ{¦¡Ãş§O"); 
+            System.out.println("æ‰¾ä¸åˆ°é©…å‹•ç¨‹å¼é¡åˆ¥"); 
             e.printStackTrace(); 
         } 
         catch(SQLException e) { 
@@ -36,7 +37,7 @@ public class DBConnectionDemo {
         } 
     } 
 } 
-//³o¬O³s±µmysqlªº½d¨Òµ{¦¡
+//é€™æ˜¯é€£æ¥mysqlçš„ç¯„ä¾‹ç¨‹å¼
 //next()
 //previous()
 //first()
@@ -51,6 +52,6 @@ public class DBConnectionDemo {
 //isBeforeFirst()
 //isAfterLast()
 //wasNull()
-//¨ä¹ê¨ú­È±o¨t¦C´N³£¬Ogettype ¨Ò¦p¤W­±ªºgetString getDouble getObject getIntµ¥ «á­±¥i¥H¶ë¤@°ïgetxxxxªº ¬İ§A¬OÔ£«¬ºA´NgetÔ£
+//å…¶å¯¦å–å€¼å¾—ç³»åˆ—å°±éƒ½æ˜¯gettype ä¾‹å¦‚ä¸Šé¢çš„getString getDouble getObject getIntç­‰ å¾Œé¢å¯ä»¥å¡ä¸€å †getxxxxçš„ çœ‹ä½ æ˜¯å•¥å‹æ…‹å°±getå•¥
 
 
